@@ -1,10 +1,11 @@
-import classes.Database;
 import classes.Task;
+import classes.Database;
 
-public class Main {
+import javax.swing.*;
+
+
+public class Main{
     public static void main(String[] args) {
-        Database.createDatabase();
-        Database.insertData(1, "Первая заметка", "Описание", "20.10.2005", "high", "none");
-        Database.selectData();
+        Database.createDatabase(); // Создание базы при запуске
     }
 }
