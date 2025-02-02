@@ -42,6 +42,20 @@ public class Database {
         }
         System.out.println(result);
     }
-    static public void insertData(int id, String title, String description, String deadline, String priority, String status){}
+    static public void insertData(int id, String title, String description, String deadline, String priority, String status){
+        try(Connection conn = DriverManager.getConnection(url);
+            PreparedStatement pstmt = conn.prepareStatement("INSERT INTO tasks (id, title, description, deadline, priority, status) VALUES (?, ?, ?, ?, ?, ?)")){
+            pstmt.setInt(1, id);
+            pstmt.setString(2, title);
+            pstmt.setString(3, description);
+            pstmt.setString(4, deadline);
+            pstmt.setString(5, priority);
+            pstmt.setString(6, status);
+            pstmt.executeUpdate();
+            System.out.println("Даные вставлены");
+        } catch (SQLException e){
+            System.out.print("Ошибка " + e.getMessage());
+        }
+    }
 }
 
